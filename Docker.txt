@@ -1,0 +1,95 @@
+Docker:
+-------
+-> A platform for building,  running and shipping applications in a consistent manner
+-> Docker used to run the applications in a container
+
+
+
+Docker is a platform that allows you to develop, deploy, and run applications in containers. 
+Containers are lightweight, standalone, and executable packages of software that include everything needed to run an application: code, runtime, system tools, libraries, and settings. 
+
+
+Images: Docker images are the blueprints for containers. They contain the application code, runtime, libraries, and dependencies needed to run the application.
+
+Containers: Containers are instances of Docker images that are running as processes on your machine. Each container is isolated and has its own filesystem, network, and process space.
+
+Dockerfile: A Dockerfile is a text file that contains instructions for building a Docker image. It specifies the base image, dependencies, and steps to set up the environment for the application.
+
+Docker Compose: Docker Compose is a tool for defining and running multi-container Docker applications. It uses a YAML file to configure the application's services, networks, and volumes.
+
+Docker Hub: Docker Hub is a cloud-based registry service that allows you to store and share Docker images publicly or privately. It is also a marketplace for finding and sharing containerized applications.
+
+Kubernetes:-
+--------------
+
+->Kubernetes used to monitor and manage the docker containers such as scaling 
+->Kubernetes is an open-source platform designed to automate deploying, scaling, and operating application containers. 
+
+
+Container Orchestration: Kubernetes automates the deployment, scaling, and management of containerized applications.
+
+Scaling: It allows you to scale your application up or down easily based on the demand, ensuring that your application remains responsive and cost-effective.
+
+Self-Healing: Kubernetes can detect and replace containers that are not responsive, ensuring that your application stays available.
+
+Configuration Management: Kubernetes allows you to manage the configuration of your application using configuration files or environment variables.
+
+
+
+
+Junit Framework:
+----------------
+
+->Junit is the Testing framework, which is used for unit testing of java code. It is done by writing java code that automatically invokes unit code and test it.
+
+Junit => Java Code + Unit testing
+
+@SpringBootTest:- it creates an application context and loads full application. which means we can @Autowire the beans picked bu the component scan into our test
+
+@Test:- Method level annotation. Indicates specific method as a unit test
+
+@InjectMocks:-  Creates Actual Objects and Inject the mocked dependencies into it.
+-> Use @InjectMock for those classes you need to test
+
+@Mock:- It is used to mock the object which is proxy of original object. It helps you to work on proxy object. Internally it uses Java Reflection API for creating Mock Objects.
+
+@Before: runs before running each test case. used for adding data that may needed for every test case.
+
+
+
+Mocking:-
+--------
+->Mocking is the process developing the objects that act as clone of real objects. Mock Object returns specific(dummy) output for specific(dummy) input
+->A method invoked using the mock reference doesn't execute actual method body defined in the class, rather the method behaviour is configured using When(....) thenRetun(....)
+
+
+->We must define When(....) thenRetun(....) for the mock object whose class methods will be invoked during actual test execution
+
+
+
+
+Advantages of Mocking:
+------------------------
+
+->No Hardcoding:  No need to write the Mock Objects on your own;
+
+->Refactoring safe: Renaming interface method or reordering parameters will not break test code as mocks are created at runtime using Java Reflection API
+->Return Value Support:  support return values
+->Exception Support:
+->OrderCheck support:
+->annotation support:- Supports creating mocks using annotation
+
+
+DisAdvantages of Mocking:
+----------------------------
+
+->Mockito can't mock everything out of the box.
+
+->We cannot mock final or static methods, equals() or construction of an object. If we want to mock we can use Power Mock
+
+
+
+
+
+
+

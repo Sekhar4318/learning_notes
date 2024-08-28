@@ -1,0 +1,111 @@
+
+
+Strings:
+
+The sequence of characters is called as String. String basically an object and that can be created using java.lang.String class.
+
+Strings can be created in two ways
+1.String Literal: String str1 = "Hello";               ->jvm checks string constant pool first. if it contains, reference of the pooled instance will be returned if not new instance created and stored in pool
+1.New keyword :   String str2 = new String("Hello");
+
+str1 == str2   -> false   : == compares object references
+str1.equals(str2)-> true  : equals() method compares values of string.
+
+
+Strings are immutable means, Once string object created it's value cannot be changed
+
+
+Methods of string:
+
+length()  -> returns length of the string
+charAt(index) -> returns char for specific index
+substring(startIndex, endIndex): Returns a substring based on the specified range.
+indexOf(str): Returns the index of the first occurrence of the specified substring.
+toUpperCase(), toLowerCase(): Converts the string to uppercase or lowercase.
+trim(): Removes leading and trailing whitespaces.
+
+
+
+CharSequence Interface:
+
+1)String
+2)StringBuffer
+3)StringBuilder
+
+
+
+Synchronize:
+refers to the coordination of multiple threads to control access to shared resources or sections of code. 
+The goal of synchronization is to ensure that only one thread can execute a particular section of code or access a shared resource at any given time
+
+JavaRegex:
+The Java Regex or Regular Expression is an API to define a pattern for searching or manipulating strings.
+
+
+Java Variables:
+A variable is a container which holds the value while the Java program is executed. A variable is assigned with a data type.
+
+Variable is a name of memory location. There are three types of variables in java: local, instance and static.
+
+
+Aggregation
+Aggregation is a way to achieve Association. Aggregation represents the relationship where one object contains other objects as a part of its state. 
+It represents the weak relationship between objects. It is also termed as a has-a relationship in Java. Like, inheritance represents the is-a relationship. It is another way to reuse objects
+
+Object methods:
+
+java.lang.Object is the root class for all Java classes. It is automatically inherited by every class in Java, and it provides a set of methods that are available to all objects. Here are some of the most commonly used methods in the java.lang.Object class:
+
+toString():
+
+String toString(): Returns a string representation of the object. By default, it returns a string consisting of the class name followed by "@" and the object's hashcode.
+equals(Object obj):
+
+boolean equals(Object obj): Indicates whether some other object is "equal to" this one. The default implementation in Object compares object references, but it's often overridden in subclasses for custom equality checks.
+hashCode():
+
+int hashCode(): Returns a hash code value for the object. This method is used when objects are stored in hash-based data structures like HashMap.
+getClass():
+
+Class<?> getClass(): Returns the runtime class of an object. This method is often used for runtime type checking.
+clone():
+
+Object clone() throws CloneNotSupportedException: Creates and returns a copy of the object. This method is protected, and the class must implement the Cloneable interface to indicate that it allows cloning.
+finalize():
+
+protected void finalize() throws Throwable: Called by the garbage collector before the object is reclaimed. This method can be overridden to perform cleanup operations.
+notify(), notifyAll(), wait():
+
+final void notify(), final void notifyAll(), final void wait(), final void wait(long timeout), final void wait(long timeout, int nanos): Used for inter-thread communication and synchronization.
+finalize():
+
+protected void finalize() throws Throwable: Called by the garbage collector before the object is reclaimed. This method can be overridden to perform cleanup operations.
+
+
+
+
+
+comparable:
+The Comparable interface is used to define the natural order of objects of a class.
+
+The class whose objects are being compared must implement the Comparable interface and provide the compareTo method.
+
+The compareTo method returns a negative integer, zero, or a positive integer depending on whether the current object is less than, equal to, or greater than the specified object, respectively.
+
+
+comparator:
+
+The Comparator interface is used to define an external way to compare objects.
+
+It allows you to create multiple ways of sorting objects without modifying the class of the objects being compared. You can have different comparators for different sorting criteria.
+
+The class implementing Comparator does not need to be the same as the class of the objects being compared.
+
+import java.util.Comparator;
+
+public class StudentComparator implements Comparator<Student> {
+    @Override
+    public int compare(Student s1, Student s2) {
+        return s1.getName().compareTo(s2.getName());
+    }
+}

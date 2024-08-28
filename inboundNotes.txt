@@ -1,0 +1,103 @@
+UMD Decommission:
+-----------------
+->The Universal Medicaid Database is an Oracle DB that contains Medicaid provider eligibility files from state Medicaid agencies. 
+This data is used for a number of use cases, including enrollment, credentialing, claims and encounters.
+
+Basically UMD Decommissioning means Removing UMD and change it to Data  i.e storing files directly into MongoDB 
+
+
+UMDown use Cases:
+
+It consist of UMDOWN tables and
+  ->who consumes those tables
+    ->which columns they are using and how the data obtained
+	
+->we have UMD cross walk and UMD cross reference tables and who consumes those tables
+
+Merge Logic:
+------------
+->We have two files for Iowa MPF(Master Provider File) and IPF (In Active Provider File)
+->IPF will comes once a week and loaded into UMD_IOWA_INACTIVE table 
+->MPF comes every 5 days a week and loaded with file date which is equal to the sysdate 
+  and then most recent inactive records from UMD_IOWA_INACTIVE table Loaded into MPF table.
+  
+UMD Data lake File Processing Tracker:
+
+->It consist of files from different states with data like received file date,file ingestion date, Files classifier and Laste file in data lake etc..
+
+Batch:
+->batch uses talend to pull the state files from UMD tables and writes the most recent records into EDWP
+->UMD state files are historical but batch team needs most current data
+
+Claims/PreAdj:
+-------------
+->For PreAdj team, state files of ARKANSAS, IOWA, MARYLAND, NORTH CAROLINA, NEW MEXICO, PENNSYLVANIA and WISCONSIN will be 
+  landed in AMISYS table STATE_PROV_FILE.
+->PreAdj pulls the latest files and handles only one file at a time.They uses python scripts to run and see how much taken since new file came in and 
+  they run job and which looks every 30 min to find the new file, if it finds it will pickup that file and stores the date of that file into DB. 
+  If it's not find then it will get back to sleep mode run after 30 min
+
+->Next if it finds any file it will check with the date file found in db and if it equals then it will reject and 
+  it will pick if it is greater than the date of file found 
+  
+->Full replacement will be happen with latest data for all state health plans except New Mexico
+->The files will be appended for New Mexico
+-> if we have states with multiple files then PreAdj team looks for the tables and cloumns they needed and 
+  do a join to get the data and map against state_prov_file table
+  
+->PreAdj team uses state specific medicaid files from UMD tables for Provider Validation and 
+  they need 6 months of historical data to answers the questions about claims
+  
+Encounters:
+-----------
+-> Encounters team uses UMD queries to validate provider set up FQHCs
+->they runs against prod Amysis
+->typically looking at NPI, medicaid number, TIN, specialty codes, active y/n
+->use mostly for new markets
+->use addresses in matching process if more than 1 match
+->use most recent records
+->if they need to validate a provider file, they get the whole state file (which is what they do most of the time)
+
+NQA:
+----
+->NQA accesses UMD for the Medicaid information of three different states. 
+->The data is pulled as a Spring Hibernate JDBC call. This data is used to verify that an affiliation was already created. If it wasn't, the affiliation will be created and the claim will be processed.
+   ->Arizona – UMDOWN.UMD_ARIZONA
+   ->Iowa – UMDOWN.UMD_IOWA
+   ->New Mexico – UMDOWN.UMD_NEW_MEXICO
+file creation for provider -stored ->stored in IboundMetaData 
+
+
+1. We need to create a file with having info from provider then need to fill all mandatory fileds and then provide 
+   the file location where it needs to be stored.(ProviderInboundMetaData)(PIF)
+   
+2. File will be created at the provided location.
+3. File watcher will be looking at the location for every 10sec for every 10 min and pickup the file and creates collection for us.(
+4. So if any consumer needs this data they can fetch using medicaid_eligibility_api
+
+
+->We will get customer saying that they need file loaded into our DB.
+->so we set up meta data with mandatory details like what type of file,fileds and frequency. This meta data is captured in Provider Meta data DB.
+-> Any of the file Landed in Mongo data base that will have file meta data and it contains unique key PIF number which is used to identify specific file
+
+
+State File Tracker:
+-------------------
+->It is file tracker used to get to know about what type of files are landed in data lake and which one actually running on the scheduler
+->Scheduler: where control M job works and runs in a specific time period. If we have Y under Control M job that means It is running and getting loaded on regular bases
+->Location: this is the location where the file comes in and we pick up from.
+->
+-> Team Owner: owner of the files who want to know when the job is running and to take the ownership of jobs.
+
+
+
+
+Once the file landed into Inbound data lake then control M job  pickup the file drops into folder in server 
+
+->Then File watcher pickup that file and creates collection in provider inbound data
+
+->After that we will create a consumer using Kafka topic with some routing rules and tags 
+
+->Then Micro services extracts events from Kafka topic and applies business rules if have any and then creates Collection in provider automation
+
+->If user wants to access data then from ME API he can able to get the data from DB

@@ -1,0 +1,366 @@
+Angular:
+--------
+Work flow:-
+----------
+Main.ts is the entry point to the application main module which needs to be intiated to start the application
+
+-> In Main.ts we have method which calls app module, we will move to app module.(AppCompoen It is base module type script file 
+   which contains component details which needs to be rendered i.e AppComponent
+
+
+
+
+Angular is a framework that is used to build client-side applications and it is especially great for building single page applications 
+where parts of the view get refreshed asynchronously without having to reload the entire page so any application that relies heavily on JavaScript angular is a great choice
+
+Required Softwares for Angular:
+Node JS, NPM Angular CLI and VS Code
+
+Angular: Angular is an open source, robust frontend java script framework, which is widely used for building client side applications, 
+especially great for building single page application where parts of the view get refreshed asynchronously without having to reload the entire page 
+so any application that relies heavily on JavaScript angular is a great choice
+
+
+
+Interceptor:
+
+->In Angular, interceptors are a powerful way to intercept and manipulate HTTP requests or responses globally in your application. 
+->They provide a mechanism to pre-process, modify, or handle requests and responses before they are sent to or received from the server. 
+->Interceptors are commonly used for tasks such as adding authentication tokens to requests, logging requests, modifying requests or responses, and handling errors globally.
+
+->To define an interceptor in Angular, you need to create a class that implements the HttpInterceptor interface. 
+->This interface requires you to implement a method called intercept, which takes two arguments: the HTTP request or response and an HttpHandler object. 
+->Inside the intercept method, you can modify the request or response as needed and then pass it along to the HttpHandler.
+
+AuthGuards:
+
+->In Angular, AuthGuards are used to control access to certain routes in your application based on whether the user is authenticated or meets certain criteria.
+->They are used in conjunction with the Angular Router to protect routes and prevent unauthorized access.
+
+->To define an AuthGuard, you typically create a class that implements the CanActivate interface. 
+->This interface requires you to implement a method called canActivate, which returns a boolean or an observable/promise that resolves to a boolean. 
+->If the method returns true, the route is activated and the user can access the route. If it returns false or a promise/observable that resolves to false, the route is blocked and the user is redirected or denied access.
+
+
+Resolvers:
+----------
+A resolver in Angular is a service that fetches data required for a route before the route is activated and the component is rendered. 
+It helps ensure that the component has the necessary data it needs to display.
+
+Implementation:-
+
+->Create a class that implements Resolve<T> and then you need to implement method called resolve that contains two parameters 
+ActivatedRouteSnapshot  and RouterStateSnapShot
+
+ActivatedRouteSnapshot:
+----------------------
+->The ActivatedRouteSnapshot class provides access to the current route's parameters through its params property, which is a ParamMap object. 
+->The ParamMap object allows you to access route parameters by name. 
+In this case, route.params.id accesses the value of the id parameter from the route's parameters.
+
+When you define a route like path: 'product/:id', the :id part in the route URL indicates a route parameter named id. 
+When the route is activated with a URL like /product/123, 
+Angular will parse the URL and extract the value 123 as the value of the id parameter.
+
+
+
+
+RouterStateSnapShot:
+-------------------
+RouterStateSnapshot is a class in Angular's Router library that represents the state of the router at a specific moment in time. 
+It contains information about the current activated route, including the URL, route parameters, query parameters, and any other relevant data associated with the route.
+
+
+When a route is activated, Angular creates a RouterStateSnapshot object that captures the state of the router at that moment. This snapshot is immutable, meaning it cannot be changed or modified. 
+It provides a read-only view of the router state at the time the snapshot was taken.
+
+Developers typically use RouterStateSnapshot in various router-related tasks, such as:
+
+Accessing route parameters and query parameters.
+Checking the current URL or route path.
+Determining the route hierarchy or parent-child relationships.
+Inspecting the router state for debugging or logging purposes.
+
+
+
+Angular Forms:
+-------------
+Angular Forms are a fundamental aspects of Angular applications, enabling developers to create user friendly interface to collect and process user input.
+
+There are two types of Anngular Forms;
+
+1)Reactive forms:
+->Reactive forms uses programming approach leveraging formBuilder,FormGroup and Form controll classes for more complex and dynamic forms
+->These are also called model-driven forms.
+
+2)Template Driven forms:
+-> These are rely on directives and ngModel in the template to create and manage form control objects;
+->They are easier to use for simple forms and small-scale applications.
+
+FormGroup:
+->A collection of FormControls that allows you to group and manage multiple form controls
+
+FormArray:
+->A collection of FormControls or FormGroups that allows you to manage dynamically growing forms
+
+
+
+
+
+
+Getting started:
+
+npm install @angular/cli^version
+
+
+ng new <projectName>      -> project creation
+
+ng g c <componentName>
+
+ng serve                  -> to run the project
+
+
+TypeScript: TypeScript is a superset of JavaScript that offers excellent consistency.It is highly recommended as it provides   syntact sugar
+and code base more comfortable to understand and maintain.Ultimately typeScript compiles down JavaScript and can run efficiently in any environment.
+
+
+
+Component:
+----------
+
+components are buliding blocks of application
+
+It contains template, class and decorator(metadata) 
+
+components are building block of Angular application. The main 
+job of Angular Component is to generate a section of web page called view. Every 
+component will have an associated template and it will be used to generate views.
+
+
+Data Binding:
+
+-> Data binding is the connection bridge between view and the business logic(model view).
+-> Data binding in angular is the automatic synchronization between model and the view. when the model changes, view automatically changes and vice versa 
+
+There are many was to bind the data in angular
+
+1) InterPolation  {{}}
+2)Property Binding (one way binding)[]
+3)Two way binding  [()]
+4)Event Binding    ()
+
+
+DOM:-
+----
+
+The Document Object Model (DOM) is a programming interface for web documents. It represents the structure of a web page as a tree-like structure,
+ where each node represents a part of the document (such as elements, attributes, and text), and can be manipulated with programming languages like JavaScript.
+
+
+InterPolation:{{}}:
+--------------------
+->with interpolation you can bind data from the class to the template and the syntax is {{}} and within the double curly braces you have a property or an expression. 
+->so you can evaluate any JavaScript expression and the result will be displayed in the browser you can also perform string concatenation you can use JavaScript properties 
+and methods as well you can even call methods that you have defined in the components class within interpolation 
+->however you cannot perform assignments or access global JavaScript variables with interpolation 
+
+
+Template:
+
+The integral part of Angular component is Template. It is used to generate the HTML 
+content. Templates are plain HTML with additional functionality.
+
+Template can be attached to Angular component using @component decorator’s meta 
+data. Angular provides two meta data to attach template to components.
+
+
+
+Here, ngIf is a built-in directive used to add or remove the HTML element in the current 
+HTML document. Angular provides many built-in directive and we will learn in later 
+chapters.
+
+
+NgIf directive:
+
+NgIf directive is used to display or hide data in your application based on the condition 
+becomes true or false. We can add this to any tag in your template
+
+ng-template
+ng-template is used to create dynamic and reusable templates. It is a virtual element. If 
+you compile your code with ng-template then is converted as comment in DOM.
+
+
+Component directives
+Component directives are based on component. Actually, each component can be used as 
+directive. Component provides @Input and @Output decorator to send and receive 
+information between parent and child components.
+Let us try use component as directive in our directive-app application.
+
+Pipes:
+
+Pipes are referred as filters. It helps to transform data and manage data within 
+interpolation, denoted by {{ | }}. It accepts data, arrays, integers and strings as inputs 
+which are separated by ‘|’ symbol. This chapter explains about pipes in detail.
+
+Chained pipes
+We can combine multiple pipes together. This will be useful when a scenario associates 
+with more than one pipe that has to be applied for data transformation.
+
+
+Built-in Pipes:
+Angular 8 supports the following built-in pipes. We will discuss one by one in brief.
+AsyncPipe
+If data comes in the form of observables, then Async pipe subscribes to an observable 
+and returns the transmitted values.
+
+
+Reactive programming enables the data stream to be emitted from one source called 
+Observable and the emitted data stream to be caught by other sources called Observer 
+through a process called subscription. This Observable / Observer pattern or simple 
+Observer pattern greatly simplifies complex change detection and necessary updating in 
+the context of the programming.
+
+
+JavaScript does not have the built-in support for Reactive Programming. RxJs is a 
+JavaScript Library which enables reactive programming in JavaScript. Angular uses Rxjs 
+library extensively to do below mentioned advanced concepts:
+ Data transfer between components.
+ HTTP client.
+ Router.
+ Reactive forms.
+
+
+
+Observable:
+------------
+As learn earlier, Observable are data sources and they may be static or dynamic. Rxjs
+provides lot of method to create Observable from common JavaScript Objects. Let us see 
+some of the common methods
+
+
+Subscribing process:
+--------------------
+Subscribing to an Observable is quite easy. Every Observable object will have a method, 
+subscribe for the subscription process. Observer need to implement three callback 
+function to subscribe to the Observable object. They are as follows:
+Angular 8 
+64
+ next - Receive and process the value emitted from the Observable
+ error - Error handling callback
+ complete - Callback function called when all data from Observable are emitted
+
+
+
+Promises and Observables:
+------------------------
+While both the concepts deal with Asynchronous events in Angular, Promises handle one such event at a time while observables handle a sequence of events over some time. 
+
+Promises - They emit a single value at a time. They execute immediately after creation and are not cancellable. They are Push errors to the child promises. 
+
+Observables - They are only executed when subscribed to them using the subscribe() method. They emit multiple values over a period of time. 
+They help perform operations like forEach, filter, and retry, among others. They deliver errors to the subscribers. When the unsubscribe() method is called, the listener stops receiving further values.
+
+
+
+
+mergeMap
+What It Does:
+-------------
+mergeMap projects each source value to an observable and merges the resulting observables into a single observable. 
+It does not cancel previous subscriptions; instead, it allows multiple active subscriptions to coexist simultaneously.
+
+When to use:
+--------------
+When you need to handle multiple asynchronous requests concurrently and combine their results.
+
+
+mergeMap subscribes to all these requests simultaneously. It doesn't cancel previous requests if a new one comes in, allowing parallel processing.
+
+
+
+switchMap also projects each source value to an observable, but it behaves differently when a new value is emitted. It unsubscribes from the previous observable and switches to the new observable. Only the latest subscription is active, effectively canceling the previous ones.
+
+---------------------------------------------------------------------------
+Once the three callback functions are defined, Observable’s subscribe method has to be 
+called as specified below:
+const numbers$ = from([1,2,3,4,5,6,7,8,9,10]);
+// observer
+const observer = {
+ next: (num: number) => { this.numbers.push(num); this.val1 += num },
+ error: (err: any) => console.log(err),
+ complete: () => console.log("Observation completed")
+};
+numbers$.subscribe(observer);
+Here,
+ next method get the emitted number and then push it into the local variable, 
+this.numbers.
+ next method also adding the number to local variable, this.val1.
+ error method just writes the error message to console.
+ complete method also writes the completion message to console.
+We can skip error and complete method and write only the next method as shown below:
+number$.subscribe((num: number) => { this.numbers.push(num); this.val1 += num; 
+});
+
+Create Angular service:
+-----------------------
+An Angular service is plain Typescript class having one or more methods (functionality) 
+along with @Injectable decorator. It enables the normal Typescript class to be used as 
+service in Angular application.
+import { Injectable } from '@angular/core';
+@Injectable()
+export class DebugService {
+ constructor() { }
+}
+Here, @Injectable decorator converts a plain Typescript class into Angular service.
+
+
+Dependency Injection:(DI):
+----------------------------
+
+
+
+
+
+
+Decorators:
+------------
+
+In Angular, decorators are functions that can be attached to classes, methods, properties, or parameters to provide metadata that Angular uses to enhance the behavior of the code at runtime. 
+Decorators are an essential part of Angular's architecture and are heavily used throughout the framework.
+
+Some commonly used decorators in Angular include:
+
+@Component: Used to define a component class and its metadata, such as its template, styles, and selector.
+
+@Injectable: Used to define a service class that can be injected into other components or services.
+
+@NgModule: Used to define a module, which can contain components, directives, pipes, and services.
+
+@Input and @Output: Used to define input and output properties of a component, respectively.
+
+@ViewChild and @ContentChild: Used to access child components or elements in a component's view or content.
+
+
+
+Angular Interview Questions:
+
+
+1)what is angular:
+
+
+ Angular is a component based framework for building structured, scalable and single page web applications for client side.
+
+
+2) Advantages of Angular:
+
+-> It is relatively simple to build single page web applications using component based architecture
+->It is used to make flexible and structured applications (OOPS Friendly)
+->It is cross platform and open source
+->Code reusability (services)
+->Testablity (spec.ts)
+
+3) Differences between Angular JS and Angular:
+
+Angular JS 
+
+ 

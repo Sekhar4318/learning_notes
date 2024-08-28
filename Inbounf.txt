@@ -1,0 +1,17 @@
+Inbound-flow:
+
+Watched folder ---ingested & stored-> State File collection -> Kafka Topic -> consuming service -> MongoDb  -> ME API
+
+
+
+
+-> File comes into the inbound data lake watched folders then file will be pickedup and ingested into MongoDb(ProviderInboundData)(StateFileCollection)
+-> Once it is inserted into StateFileCollection, published each individual file record as individual centEvent to a KafKa topic
+-> We need to setUp routing rules to subscribe Kafka topic for published centEvents
+-> MicroService listens for new event Topics
+->Consuming service maps the data to the common model object and insert into DB
+
+
+
+
+

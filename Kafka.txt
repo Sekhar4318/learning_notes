@@ -1,0 +1,79 @@
+Apache Kafka:
+
+Apache kafka is an open-source stream processing software platform which is used to handle real time data storage.It works as interface between sender and receiver 
+and It can handle trillions of data events in a day
+
+
+->It is a publish-subscribe messaging system which let exchanging of data between applications, servers, and processors as well
+
+Messaging system:
+-----------------
+
+Messaging system is the exchage of messages between two persons, Devices etc.
+A publish-subscribe messaging system allows sender to send messages and receiver read that message. In Kafka sender is producer who publish the messages and receiver is consumer who consumes messages by subcribing it.
+
+
+Streaming process:
+-----------------
+     A streaming process is the processing of data in parallelly connected systems. 
+	 This process allows different applications to limit the parallel execution of the data, where one record executes without waiting for the output of the previous record.
+	 
+It has the following capabilities:
+->As soon as the streams of records occur, it processes it.
+->It works similar to an enterprise messaging system where it publishes and subscribes streams of records.
+->It stores the streams of records in a fault-tolerant durable way.
+
+
+Apache Kafka Core API's:
+------------------------
+1)Producer API
+2)Consumer API
+3)Streams API
+4)Connector API
+
+
+Producer API: This API allows/permits an application to publish streams of records to one or more topics. (discussed in later section)
+
+      Code:
+	  -----
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.stereotype.Component;
+
+@Component
+public class KafkaProducer {
+
+    @Autowired
+    private KafkaTemplate<String, String> kafkaTemplate;
+
+    public void produceMessage(String message) {
+        kafkaTemplate.send("test-topic", message);
+        System.out.println("Sent message: " + message);
+    }
+}
+
+
+Consumer API: This API allows an application to subscribe one or more topics and process the stream of records produced to them.
+
+    Code:
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class KafkaConsumer {
+
+    @KafkaListener(topics = "test-topic", groupId = "test-group")
+    public void consumeMessage(String message) {
+        System.out.println("Received message: " + message);
+    }
+}
+
+Streams API: This API allows an application to effectively transform the input streams to the output streams. 
+It permits an application to act as a stream processor which consumes an input stream from one or more topics, and produce an output stream to one or more output topics.
+
+Connector API: This API executes the reusable producer and consumer APIs with the existing data systems or applications.
+
+
+
+
+

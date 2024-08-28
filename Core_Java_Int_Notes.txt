@@ -1,0 +1,225 @@
+Core Java:-
+------------
+Exception in inheritance:
+
+1. If parent throws exception, it is optional for child to throw but if child throws exception then parent must throw that exception
+2. If parent throws genric exception and child throws Exception then we will get compile time error. Bcz If Parent throws genric exception then Child must throw same exception or it can be without throwing any exception
+
+
+
+
+-------------------------------
+Immutability: Instances of immutable classes, once created, cannot be changed. All fields are typically declared as final, 
+and modifications are achieved through methods that return new instances.
+
+
+
+
+-----------------
+
+
+If the superclass method does not declare an exception:-
+--------------------------------------------------------
+
+Rule 1: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception.  -> We will get the error if we declare checked exception
+Rule 2: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but can declare unchecked exception.
+
+
+If the superclass method declares an exception:
+------------------------------------------------
+Rule 1: If the superclass method declares an exception, subclass overridden method can declare the same subclass exception or no exception but cannot declare parent exception.
+
+Rules for method overriding:
+----------------------------
+1)Method Signature:- MS should be same as parent (name, number and return type of parameters)
+2)Access Modifier :- child must have the same access modifier or below restrictive than the method in parent class
+                       For example, if the method in the superclass is declared as protected, you can't override it with a method declared as private.
+
+3)Return Type: ReturnType of overriding method should be same as parent class
+4)ExceptionHandling:- If parent method throws Exception then Child method may or may not throw exception but if need it should throw sub class of that exception not the broader exception.					   
+
+
+Inheritance:
+
+-> 
+
+without override
+---------------
+
+class A {
+
+	 public int parent() throws ArithmeticException{
+
+			System.out.println("parent");
+
+			return 0;
+
+	 }
+
+}
+ 
+class B extends A {
+ 
+	public int child() throws Exception{
+
+		System.out.println("child");
+
+		return 0;
+
+	 }
+ 
+}
+
+A a =new B();
+
+a.child();
+
+
+
+//Output: compile time error => bcz child method was not there in parent class
+
+->without override it will look for the method in parent class first as it was not there we got the compile time error
+
+-------------------------------------------------
+
+
+calss A {
+	 public int m1(){
+			System.out.println("parent m1 method");
+			return 0;
+	 }
+}
+ 
+class B extends A {
+ 
+	public int m1) throws Exception{
+		System.out.println("child m1 method");
+		return 0;
+	 }
+ 
+}
+A a =new B();
+a.m1();
+
+
+//Output: child m1 method     => when we override and create instance of child and hold it on parent then it checks method in child. If not found it checks method in parent
+
+-----------------------------------
+
+
+class Employee{
+
+int id, name , sal, dep;
+
+}
+
+empList.stream().collect(Colectors.groupingBy(Employee::getDep), Collectors.Counting())
+
+Map<Employee, Double> empMap = new HashMap<>();
+
+ empMap.put(new Employee(1,"A",111), 111);
+empMap.put(new Employee(1,"B",111) , 111);
+empMap.put(new Employee(2,"C",111) , 111);
+
+empMap.size()
+
+empMap.get(new Employee(1,"A",111));
+
+
+
+
+String str = new String("user");
+  map.put(str ,1);
+map.put(new String("user") ,2);
+map.put("user" ,3);
+
+map.size()
+map.get(new String("user"));
+map.get("user");
+
+
+
+String str = new String("user");
+String s = "user";
+
+str.equals(s);
+
+
+
+
+
+
+
+class A {
+
+public int i = 10;
+
+public void m1(){}
+sop("A");
+}
+class B extends A {
+public int i = 20;
+
+public void m1(){}
+sop("B");
+}
+
+A a = new B();
+a.m1();
+a.i;
+
+
+
+
+
+int[] arr = new int[]{47, 12, 38, 52, 6,47} --  second highest
+
+List<Integer> intList = Arrays.asList(arr);
+
+intList.stream()..sorted(Comparator.reverse()).skip(1).findFirst();
+
+Default and Static methods in interface:
+----------------------------------------
+
+->Default methods doesn't force implementation class to override. If need we can override 
+->Static Methods: If we want to have common method for all implementation classes we can use static method inside Interface
+
+
+what is final, finally and Finalize:-
+-----------------------------------------
+final : keyword  -> If applied to class, can't inherit the class. If it's applied to method can't override. If its applied to variable then we can't change it's value 
+finally : block -> used along with try block, Excecutes everytime whether Exception occurs or not. 
+Finalize: method which runs by the JVM for Garbage collection
+
+
+
+Equal and HashCode:-
+--------------------- 
+Equals methods compares the value where as == compares the references\
+
+
+
+
+
+Exception Hierarchy:-
+-------------------
+
+
+
+
+Default and static methods:-
+----------------------------
+While default methods in interfaces allow you to add new methods to interfaces without breaking existing implementations, 
+static methods complement them by providing a way to include utility methods that do not rely on instance data.
+
+
+Lamda Expression:
+-----------------
+A lambda expression in Java is a concise way to represent an instance of a functional interface
+
+
+
+When to use Functional Interface:
+----------------------------------
+The Stream.map(Function) method cannot know how a user would want to transform elements. 
+Therefore it takes a Function and lets the user implement it in whatever way they like.

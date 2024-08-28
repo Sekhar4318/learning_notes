@@ -1,0 +1,20 @@
+JWT:
+----
+
+JWT is Json Web Token used for securely transmitting the information between the client and the server.
+It is oftern used in authentication and authorization scenarios.
+
+
+->JWT is a string consist of three parts
+
+1)Header:-  It consist of two parts, Token type(JWT) and signing algorithm being used such as HMAC, SHA256 or RSA
+ 
+2)PayLoad: - It contains claims which is about user information. There are three types of claims 
+             Registered, public and private claims
+			 
+			 
+3)Signature: To create the signature you have to take the encoded header, encoded payload, a secret and the algorithm specified in header and sign that. 
+             The signature ensures that the token has not been tampered with during transmission.
+
+
+->JWT can be signed with   

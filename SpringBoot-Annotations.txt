@@ -1,0 +1,357 @@
+          SpringBoot Annotations:
+		  -----------------------
+	  
+	  
+@SpringBootApplication:
+
+@EnableAutoConfiguration : It auto-configures the bean that is present in the classpath and configures it to run the methods.
+
+@ComponentScan : It is used when we want to scan a package for beans. It is used with the annotation @Configuration. We can also specify the base packages to scan for Spring Components.
+
+@Configuration:  The class annotated with @Configuration used by Spring Containers as a source of bean definitions.
+
+	
+@Requred:	
+-> It applies to the bean setter method. It indicates that the annotated bean must be populated at configuration time with the required property, else it throws an exception BeanInitilizationException.
+           ->indicating a mandatory field or parameter that needs to be provided
+		   
+		
+
+Exception Handling in Spring Boot:
+-------------------------------------
+1.ExceptionHandler:-
+-------------------
+ The @ExceptionHandler annotation allows you to handle specific exceptions thrown by methods within the same controller.
+     It's a straightforward way to handle exceptions on a per-controller basis.	
+
+ Ex:-
+ ----
+@ExceptionHandler(UserNotFoundException.class)
+public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
+   return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+}	
+
+2.ControllerAdvice:-
+--------------------
+To handle exceptions globally across multiple controllers, you can use the @ControllerAdvice annotation. 
+ This allows you to centralize your exception handling logic. 
+ 
+ Ex:-
+ ----
+ @ControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+	
+}
+
+3. Using @ResponseStatus Annotation
+-------------------------------
+You can annotate a custom exception class with @ResponseStatus to automatically map exceptions to specific HTTP status codes.
+
+Ex:-
+---
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class UserNotFoundException extends RuntimeException {
+    public UserNotFoundException(String message) {
+        super(message);
+    }
+}
+
+   When UserNotFoundException is thrown, it will return a 404 Not Found status code without additional configuration.
+   
+   
+----------------------------------------------
+
+
+		   
+		   
+@Component: indicates annotated class as spring bean. This annotation indicates spring container to create spring bean automatically.
+
+@Autowired: used to inject the bean automatically. This annotation is used to inject the dependency using constructor, setter and field injection.
+ex: field injection:-
+
+  @Autowired
+  private VegPizaa vegPizza;
+
+Constructor injection:-
+
+  private VegPizaa vegPizza;
+  
+  @Autowired
+  public PizzaService(VezPizza vegPizza){
+     this.vezPizza = vegPizza;
+    }
+	
+Setter Injection:-
+
+  @Autowired
+  public void setPizza(VegPizaa vegPizza){
+        thi.vegPizza = vegPizza;
+    }
+	
+	
+@Autowired: This annotation is specific to the Spring framework. It was introduced in Spring 2.5 to simplify dependency injection for Spring beans.
+@Inject: This annotation is part of the Java standard defined in JSR-330 (javax.inject). It's a more generic annotation that can be used with any dependency injection framework, not just Spring.	
+
+Which one to use?
+
+Spring Applications: If you're working with a Spring Boot application, @Autowired is generally the preferred choice. It leverages Spring's features and simplifies dependency injection within your Spring beans.
+Non-Spring Applications or Portability: If you're not using Spring or want your code to be more portable across different frameworks, @Inject is a better option. It's a standard annotation and doesn't rely on Spring-specific functionalities.
+
+
+--------------------	
+	
+
+@Qualifier: It is used in conjuction with @Autowired to avoid the confusion when we have two or more beans configured for the same type.
+
+Ex:- @Autowired
+  public PizzaService(@Qualifier("NonVegPizza") Pizza pizza){
+     this.vezPizza = vegPizza;
+    }
+
+@Primary: Used to give high preference to the bean when we have multiple beans configured for the same type.
+
+
+@Bean: It indicates that the method produces a bean that can be managed by spring container.
+-> It is used in Configuration class to define spring beans
+-> By default name is same as method name. If need we can specify the bean name using @Bean(name='beanName')
+->It provides initMethod and destroyMethod to perform some actions after bean intialization or before bean destruction by the container
+
+ Ex:-
+ 
+  Public class AppConfig{
+     @Bean
+     public Pizza getVezPizza(){
+      return new VegPizaa();
+    }
+ }
+ 
+StereoType Annotations:-
+-----------------------
+@Component
+@Controller:-
+->Spring provides @Controller annotation to make a class spring mvc controller
+->@Controller in spring mvc web application is a component that handles incoming http requests
+->we use @Controller in a combination with with @Requestmapping annotation for request handling methods
+->It is a specialization of @component class, which allows us to auto detect implementation classes through class path 
+@RestController:-
+->In order to develop RestFul web services using spring mvc we need to use @Controller and @ResponseBody
+->Spring 4.0 introduced @RestController which is nothing but a combination of @Controller and @ResponseBody
+
+whenever we want develop RestFul web services using spring mvc we can use @RestController
+and if we want to develop spring mvc application that returns view we can use @Controller
+
+use @Controller for traditional web applications where you need to return views, and 
+use @RestController for building RESTful web services where the response is a JSON or XML representation of the data.
+
+
+@RequestMapping:-
+->It is used to map web requests to spring controlller methods
+->It can be applied to the Controller class as well as handler methods
+
+ RequestMapping with Produces and Consumes attributes:-
+ 
+ @RequestMapping( value = {'/book', '/core-java', '/java'},
+               Method = RequestMethod.GET,
+			   produces= { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+			   Consumes= { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+
+)
+
+@RequestBody:-
+->It is responsible for retriving http request body and convert into Java object
+
+@PathVariable:- 
+-> It is used on method argument to bind the value of URL variable to method argument
+
+@RequestParam:-
+->Used to extract the query parameters from the request   
+ 
+
+
+
+@Modifying:-
+If you don't use @Modifying when updating, deleting, or inserting data with Spring Data JPA, the method will be treated as a read-only query;
+
+If you try to execute an update, delete, or insert query without @Modifying, you'll likely encounter an exception indicating that the query is read-only and cannot be executed as an update operation.
+
+
+Trancient:-
+----------
+the transient keyword is used to mark a field in a Java entity class that should not be persisted to the database.
+ When an entity object is in a transient state (i.e., not associated with any Hibernate Session), any fields marked as transient will not be saved to the database when the entity is saved or updated.
+
+UseCases:
+-----------
+Serialization ;- when we want specific field to not serialize then we can use trancient key word
+DB:- if we use trancient for a field then it won't be parsisted into DB
+
+
+@Transient in Hibernate:    Used to mark a field that should not be persisted to the database.
+transient keyword in Java:  Used to indicate that a field should not be serialized.
+------------
+Profiles in SpringBoot:-
+---------------------------
+Profiles are way to define sets of configurations that can be used to customize application behaviour in different environment.
+It allows you to have different configurations for Dev,Test and Production
+
+
+
+@scheduled:
+----------
+it is used to execute a method in a specific time dynamics
+
+fixed delay: 
+->used to maintain a delay between two method executions.
+->it will delay some time after execution of current method then next method will execute
+->means until the completion of current method execution the next method will not be execute
+
+@async : asynchronous task will be invoked each second, even if the previous task isn't done.
+
+
+@Service
+@Repository
+
+
+
+------------ Spring -----------------
+@Lazy:-
+-> By default spring creates all singletone beans eagerly at the startup/bootstrapping of the application context
+-> You can load the spring beans lazily(on-demand) using @Lazy annotation
+->@Lazy annotation can be used with @Configuration, @Component and @Bean
+-> Eager intialization is recommended to avoid and detect the errors immediatly rather than at runtime.
+
+
+@Scope:
+
+-> it is used to define scope of a bean
+->we use @Scope to define scope of a @component or @bean
+->Singletone:- only one istance of the bean is created and shared across the application and it is a default scope
+->prototype:- a new instance of the bean is created everytime it requested
+
+@Scope(value = "singleton")
+@Scope(value = "prtotype")
+   
+   
+
+@Value:- 
+->It is used to provide default values to the field or method parameters
+->Also we can read the system variables or spring environment variables using @value annotation
+
+
+@ProperySource and @PropertySources:-
+
+->@PropertySource is used to provide the property file to the spring environment and 
+->@PropertySources is used to provide multiple property files to springEnvironment
+-> it is repeatable means we can use multiple @PropertyResource
+-> And we can read the data using @Value annotation
+
+Ex: @PropertySource('classpath:abc.properties')
+    @PropertySource('classpath:xyz.properties')
+	
+	@PropertySources({
+	        @PropertySource('classpath:abc.properties'),
+            @PropertySource('classpath:xyz.properties')
+	})
+
+		
+		
+
+	
+	
+	
+	
+	
+Spring:-
+
+->It is an open-source, light weight, loosely coupled, aspect oriented and dependency injection based java application development framework which supports 
+building various types of applications like web based application, DB driven application and Enterprise application.
+
+-> It contains four modules
+
+1) Core container:- It provides IOC and Dependency injection for spring framework and also it contains bean factory, application context and spEL(Spring Expression Language)
+
+
+2) Data access/Integration:- It provides support to interact with DB and to integrate with ORM solutions like Hibernate and JPA
+
+3) Web: It provides support to web application development. It contains web application context, which is built on application context of core container.
+   ->Hence it provides complete spring MVC Impl to develop presentation tier
+   
+4)Other Modules: Other modules provided like AOP, Messaging and Testing like Junit etc.
+---------------
+
+
+In Spring, Inversion of Control (IoC) is a principle where the control of object creation and management is transferred from the application code to the Spring framework
+
+Dependency Injection (DI) is a specific implementation of IoC where the container injects dependencies into a class, rather than the class creating them itself. There are several types of DI:
+
+Constructor Injection
+Setter Injection
+Field Injection
+
+
+RestTemplate:-
+--------------
+RestTemplate is a helpful tool within the Spring Framework that acts as a synchronous client for making RESTful API calls over HTTP. 
+It simplifies interacting with REST APIs by providing a template-method approach, reducing boilerplate code.
+
+getForObject(url, classType): Performs a GET request, retrieves the response body, and converts it to the specified object type.
+getForEntity(url, classType): Similar to getForObject, but returns a whole ResponseEntity containing headers and status code.
+postForObject(url, request, classType): Sends a POST request with the provided object as the request body and returns the response body converted to the specified class type.
+delete(url): Executes a DELETE request on the specified URL.
+
+------------------------------------
+
+
+@Transactional:- 
+->It is used to wrap a method in database connection.
+->Transaction manages the changes that you perform in one or more systems. 
+-> It allows us to set propagation, Isolation, timeout, readOnly and rollback conditions for our transaction.
+-> Main goal of Transaction is to provide ACID characteristics to ensure consistency and validity of your data
+
+Automicity(A):- It describes all or none principles. If you are using @Transactional and the transaction committed successfully then you can be sure that all operations performed successfully.
+-> It also enables you to abort the transaction and roll back all operations if any error occurs
+
+Consistency(C):-It ensures your transaction to take a system from one consistence state to another consistency state. That means either all operations were
+roll back and the data was set back to the state that you started with or changed data passed all consistency checks. (Constrain checks like foreign key, unique Key)
+
+Isolation:- means changes that performed with in tansaction are not visible to any another transaction untill you commit them successfully.
+
+Durability:- It ensures that your committed changes get persisted.
+
+
+Transactional Propagation:-
+-> Propagation defines our business logic transaction boundary. Spring manages to start and pause transaction based on propagation setting.
+
+
+--------------------------------------------
+
+@Transactional is an annotation used in Spring to indicate that a method (or all methods of a class) should be wrapped in a transaction.
+
+When a method annotated with @Transactional is called, Spring creates a transaction for that method. If the method completes successfully, the transaction is committed, and if an exception occurs, the transaction is rolled back, ensuring data consistency and integrity.
+
+
+
+
+Key Concepts of @Transactional:
+---------------------------------
+Atomicity: All operations within the transaction are treated as a single unit. If any operation fails, the transaction is rolled back, undoing all changes.
+Consistency: The transaction brings the database from one consistent state to another.
+Isolation: Transactions are isolated from each other until they are completed.
+Durability: Once a transaction is committed, the changes are permanent.
+
+
+
+Thread uses:-
+--------------
+Threads are used in computing to allow a program to perform multiple tasks concurrently. 
+They are the smallest unit of processing that can be scheduled by an operating system's scheduler. 
+
+Threads allow a program to execute multiple parts of its code in parallel, enabling tasks to run simultaneously and making more efficient use of available resources, such as multiple CPU cores.
+
+
+	

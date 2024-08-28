@@ -1,0 +1,326 @@
+
+
+Spring boot:
+------------
+
+->Spring and Spring boot annotations
+---------------------------------
+@Modifying:-
+If you don't use @Modifying when updating, deleting, or inserting data with Spring Data JPA, the method will be treated as a read-only query;
+
+If you try to execute an update, delete, or insert query without @Modifying, you'll likely encounter an exception indicating that the query is read-only and cannot be executed as an update operation.
+
+
+Trancient:-
+----------
+the transient keyword is used to mark a field in a Java entity class that should not be persisted to the database.
+ When an entity object is in a transient state (i.e., not associated with any Hibernate Session), any fields marked as transient will not be saved to the database when the entity is saved or updated.
+
+UseCases:
+-----------
+Serialization ;- when we want specific filed to not serialize then we can use trancient key word
+DB:- if we use trancient for a field then it won't be parsisted into DB
+
+
+@Transient in Hibernate:    Used to mark a field that should not be persisted to the database.
+transient keyword in Java:  Used to indicate that a field should not be serialized.
+------------
+Profiles in SpringBoot:-
+---------------------------
+Profiles are way to define sets of configurations that can be used to customize application behaviour in different environment.
+It allows you to have different configurations for Dev,Test and Production
+
+Annotations: You can use the @Profile annotation to specify that a bean is only available in certain profiles. For example, @Profile("dev") means the bean is only available when the "dev" profile is active.
+
+
+SpringSecurity:
+---------------
+CSRF:-
+-------
+Cross-Site Request Forgery (CSRF) is an attack where a malicious website tricks a user's browser into sending unauthorized requests to a web application that the user is logged into. 
+
+example:
+--------
+Imagine you are logged into your online banking account. While still logged in, you visit a malicious website that contains a hidden form. 
+This form is designed to transfer money from your bank account to the attacker's account. 
+The form is hidden so you cannot see it, but when you visit the website, your browser automatically submits the form without your knowledge.
+
+
+
+Token-Based Authentication: This is a stateless authentication mechanism where a token is generated and sent to the client after successful authentication. The client includes this token in subsequent requests to authenticate.
+In-Memory Authentication: This is the simplest form of authentication where user credentials are stored in memory. It is suitable for testing and small applications but not recommended for production use due to security concerns.
+
+
+
+->Actuators in spring boot:
+   It helps you to monitor and manage your application when you push it to production.
+   And It provides the access to various end points  allows you to monitor application health, gather metrics, view the application's configuration, and more.
+   
+   -> /actuator/health:-  This endpoint provides information about the health of your application. It can be used by monitoring tools to check if the application is running correctly.
+   -> /actuator/Info:-  Provides custom info about your application 
+   -> /actuator/metrics: This endpoint provides metrics about your application, such as memory usage, request counts, and more.
+   -> /actuator/env: This endpoint provides information about the application's environment variables.
+   -> /actuator/beans: This endpoint provides a list of all the Spring beans in your application context.
+   -> /actuator/loggers: This endpoint allows you to view and modify the logging levels of your application.
+   
+   
+->Spring boot dependencies:-
+
+   1)spring-boot-starter-web:     ->  Provides the necessary dependencies for building web applications 
+   2)Spring-boot-starter-data-jpa ->  Provides the necessary dependencies for working with JPA (Java Persistence API) for database access.
+   3)Spring-boot-stater-security  ->  Provides the necessary dependencies for securing your application using Spring Security.
+   4)spring-boot-starter-test     ->  Provides the necessary dependencies for writing unit and integration tests.
+   5)spring-boot-starter-actuator ->  Provides production-ready features to help you monitor and manage your application.
+
+
+
+   -> The spring-boot-starter-parent :  is a special kind of starter that provides default configurations and dependencies for a Spring Boot project.
+	   By using spring-boot-starter-parent, you inherit the following benefits:
+
+   1)Default Configuration: The parent project defines default configurations, such as plugin versions, dependency management, and Java version.
+
+   2)Dependency Management: It manages the versions of dependencies, so you don't need to specify versions for most Spring Boot dependencies in your pom.xml.
+
+   3)Build Configuration: It provides default build configurations, such as resource filtering, resource handling, and plugin configurations.
+
+   4)Plugin Management: It manages versions of plugins used for building and packaging the project.
+  
+   4)Spring Boot Version: It defines the version of Spring Boot to use, which can be easily updated by changing the version in the spring-boot-starter-parent declaration.
+
+   
+
+  
+
+
+->Docker
+
+
+
+->Can we create non web application in Java?
+   Yes, by excluding web-starter dependency.
+
+
+
+->componentScan - componentScan(basePackages = {"com.example.package1", "com.example.package2"})
+->
+
+
+
+
+
+Patterns:
+-----------
+
+->Design patterns in JAVA
+
+
+Test:
+-----
+->Junit
+
+
+Kafka:-
+-----
+
+
+
+
+Cloud: 
+
+
+
+
+
+
+
+
+
+
+Spring Security:-
+----------------
+->JWT
+
+
+
+
+what is spring boot starter:
+---------------------------
+Spring Boot starters are like pre-made kits for building Spring Boot applications. 
+Each starter includes a bunch of related dependencies (like the materials for your house) that you'll typically need for a specific feature or functionality. 
+For example, there's a starter for web development, one for databases, and another for security.
+
+
+
+Hibernate:
+-----------
+->Mention some of the advantages of using ORM over JDBC.
+ORM has the following advantages over JDBC:
+
+Application development is fast.
+Management of transaction.
+Generates key automatically.
+Details of SQL queries are hidden.
+
+
+->List the key components of Hibernate.
+Key components of Hibernate are:
+
+Configuration
+Session
+SessionFactory
+Criteria
+Query
+Transaction
+
+->17) What is Session?
+It maintains a connection between the hibernate application and database.
+
+It provides methods to store, update, delete or fetch data from the database such as persist(), update(), delete(), load(), get() etc
+
+
+
+Criteria:-
+----------
+the Criteria API is used to create queries programmatically without using HQL or native SQL. 
+It provides a more object-oriented and type-safe way to build queries. Here's a basic overview of how you can use Criteria in Hibernate:
+
+Example:-
+
+CriteriaBuilder builder = session.getCriteriaBuilder();
+CriteriaQuery<Employee> criteriaQuery = builder.createQuery(Employee.class);
+Root<Employee> root = criteriaQuery.from(Employee.class);
+criteriaQuery.where(builder.equal(root.get("department"), "IT"));
+criteriaQuery.orderBy(builder.asc(root.get("name")));
+List<Employee> resultList = session.createQuery(criteriaQuery).getResultList();
+
+
+->Interfaces Of Hibernate:
+
+Session Factory:- Instance of Session factory used for retriving session objects for data base operations. We need to intialize that once and cache it to reuse it again and again
+
+Session:- It's factory of transaction. It is used to get connection between application and the db. It also provides methods for CRUD operations
+
+Transaction: Transaction specifies single automic unit of work. I can fetch , update or delete the data. All these CRUD operations may be a part of single transaction 
+  once its done we can commit or if it failing I can roll back particular thing.
+  
+  
+  Hibernate Annotaions:-
+  ----------------------
+  
+  @Entity ->
+  @Table
+  @Access:- used to define access type, either field or property. By Default AccessType is FIELD. If you want to add getter and setters then you can use accessType.PROPERTY.
+  
+            when we use AccessType.Field then JPA access the entity state through fields without need of getter and setters
+            when we use AccessType.PROPERTY then JPA access entity state through setters and getters that we provided
+  
+  
+  @ID
+  @EmbeddedID ;- used to create composite primary key in entity bean.
+                 If we want to make two or three columns as primary key then we can use @EmbeddedID
+				 
+  GeneratedValue:- used to define strategy to be used for generation of Primary Key
+  
+  GenerationType.AUTO:     With GenerationType.AUTO, the persistence provider selects the generation strategy based on the database capabilities. 
+                          It might use IDENTITY, SEQUENCE, or TABLE depending on the database. Let's assume the database uses IDENTITY for GenerationType.AUTO.
+						  
+  GenerationType.IDENTITY
+  GenerationType.SEQUENCE
+  
+  
+  
+  @Cascade:-
+  
+  @PrimaryJoinColum:- This annotation is used in a @OneToOne mapping to specify the mapping of a foreign key column in the entity that is the owner of the relationship when the foreign key is also the primary key of the entity.
+  @JoinColumn:-  Used in @ManyToOne or @OneToOne mapping to specify the column name and other properties of the foreign key column.
+  
+  
+  
+  
+  Mappings:
+  ----------
+  @OneToOne:-
+  -------------
+  
+  When using @OneToOne mapping, Hibernate automatically creates a foreign key column in the table of the owning entity (Employee in this case) to establish the relationship. 
+   This foreign key column is used to reference the primary key of the associated entity (Address in this case).
+
+Since the @OneToOne mapping is specified in the Employee class and Address is the target entity, Hibernate will automatically create a column in the Employee table to store the foreign key that references the Address table.
+
+
+
+Caching in Hibernate:-
+----------------------
+Caching in Hibernate is a mechanism to store the recently used objects and queries in memory to reduce the number of database hits. It helps improve the performance of an application by reducing the time taken to fetch data from the database. There are two levels of caching in Hibernate:
+
+First Level Cache (Session Cache): This is enabled by default and is associated with the Session object. It is used to store the objects retrieved during a particular session. It prevents multiple database hits for the same object within the same session.
+
+Second Level Cache: This is optional and is used to store the objects across different sessions. It is shared by all sessions and is more useful in a multi-session or clustered environment.
+
+Here's a simple example to enable second-level caching in Hibernate:
+
+Enable Caching in Hibernate Configuration: Add the following properties to your hibernate.cfg.xml or application.properties file to enable second-level caching:
+
+xml
+Copy code
+<!-- Hibernate Configuration -->
+<property name="hibernate.cache.use_second_level_cache">true</property>
+<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</property>
+Enable Caching for an Entity: Annotate your entity class with @Cacheable and specify the caching strategy (optional) using @Cache annotation:
+
+java
+Copy code
+import javax.persistence.*;
+
+@Entity
+@Table(name = "products")
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    // Getters and setters
+}
+Accessing Cached Data: Hibernate automatically manages the caching of entities. When you load an entity for the first time, it is stored in the cache. Subsequent requests for the same entity will be fetched from the cache if it is still valid.
+
+
+
+read-only: caching will work for read only operation.
+nonstrict-read-write: caching will work for read and write but one at a time.
+read-write: caching will work for read and write, can be used simultaneously.
+transactional: caching will work for transaction.
+
+
+
+HCQL (Hibernate Criteria Query Language)
+Hibernate Criteria Query Language
+Criteria Interface
+Restrictions class
+Examples of HCQL
+
+
+
+The Hibernate Criteria Query Language (HCQL):-
+-----------------------------------------
+ is used to fetch the records based on the specific criteria. The Criteria interface provides methods to apply criteria such as retreiving all the records of table whose salary is greater than 50000 etc.
+ 
+ 
+ 
+ Crietria c=session.createCriteria(Emp.class);  
+c.setFirstResult(10);  
+c.setMaxResult(20);  
+List list=c.list();  
+
+Example of HCQL to get the records whose salary is greater than 10000
+
+Crietria c=session.createCriteria(Emp.class);  
+c.add(Restrictions.gt("salary",10000));//salary is the propertyname  
+List list=c.list(); 
+
+  
+  
+  

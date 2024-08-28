@@ -1,0 +1,27 @@
+Kubernetes:
+-----------
+Kubernetes automates operational tasks of container management and includes built-in commands for deploying applications, 
+rolling out changes to your applications,scaling your applications up and down to fit changing needs, monitoring your applications
+
+Helm Charts:
+------------
+What is a Helm chart for?
+A Helm chart is a set of YAML manifests and templates that describes Kubernetes resources 
+(Deployments, Secrets, CRDs, etc.) and defined configurations needed for the Kubernetes application, 
+
+YAML manifest:
+-------------
+The YAML configuration is called a “manifest”, and when it is “applied” to a Kubernetes cluster, Kubernetes creates an object based on the configuration. 
+A Kubernetes Deployment YAML specifies the configuration for a Deployment object—this is a Kubernetes object that can create and update a set of identical pods.
+
+egress & ingress:
+-----------------
+->egress is the process of data being shared externally via a network's outbound traffic
+->data ingress refers to traffic that comes from outside an organization's network and is transferred into it.
+->An ingress gateway allows you to define entry points into the mesh that all incoming traffic flows through. Egress gateway is a symmetrical concept; it defines exit points from the mesh. 
+Egress gateways allow you to apply Istio features, for example, monitoring and route rules, to traffic exiting the mesh
+
+Kibana:
+-------
+Kibana is a source-available data visualization dashboard software for Elasticsearch, whose free and open source fork in OpenSearch is OpenSearch Dashboards.
+Searching, viewing, and visualizing data indexed in Elasticsearch and analyzing the data through the creation of bar charts, pie charts, tables, histograms, and maps
