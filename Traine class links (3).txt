@@ -1,0 +1,80 @@
+Traine Classes 
+
+18/10/21 --> Links :https://onlinegdb.com/OE5MYlVEP
+                   :https://github.com/imtiazjava/HTML.git     ----->HTML
+
+20/10/21-----> https://www.onlinegdb.com/HNBsqOCuL          -------->HTML&css
+
+21/10/2021----->https://www.onlinegdb.com/ayt6_krQD       ---->https://bootstrapious.com/p/bootstrap-footer-bottom
+            |-->https://www.onlinegdb.com/JAPIbs-EH
+
+22/10/2021----->>https://onlinegdb.com/xvNKIh0ZS         ---------->java script
+            --->https://onlinegdb.com/aXRWmlO1e
+
+->SQL
+
+26/10/21---->https://onlinegdb.com/slQ5PGU4h
+
+27/10/21---->https://onlinegdb.com/yYXi9YijR     -->DATABASE COMMANDS :https://docs.microsoft.com/en-us/sql/t-sql/database-console-commands/database-console-commands?view=sql-server-ver15
+        ---->https://onlinegdb.com/3tDvmV6VE
+
+28/10/21 --->https://onlinegdb.com/17bmVVgpi
+
+JAVA
+
+3/11/21 ---->https://onlinegdb.com/zPk0gek5d
+
+5/11/21 ---->https://www.onlinegdb.com/8q_4Wkr8F
+
+8/11/21 ---->https://onlinegdb.com/mVER4u_KT
+
+10/11/21 --->https://onlinegdb.com/a_PrCsJWR
+
+11/11/21 --->https://onlinegdb.com/hJ11bKbYVp
+
+collections in java
+---------------------
+12/11/21 --->https://www.onlinegdb.com/X5Ycpkl_b
+
+15/11/21 --->https://www.onlinegdb.com/nQQOGM4LO
+
+16/11/21 --->https://onlinegdb.com/dWprlup_Tl
+          Date,time,Calender
+         ---------------------
+         ---->https://onlinegdb.com/Cj4-PNTN9
+
+JDBC                                                         mysql.jar file
+-----                                                       ---------------------
+17/11/21 ---> https://onlinegdb.com/gyym-W1r5           -----> http://www.java2s.com/Code/Jar/m/Downloadmysqlconnectorjar.htm
+
+18/11/21 ---> https://onlinegdb.com/6hL0yTCn2
+
+JDBC & Exceptions
+------------------
+19/11/21 ---> https://onlinegdb.com/M0SsnEz2J
+
+IO Streams
+---------
+20/11/21 --->https://www.onlinegdb.com/IqmlJ-xo3
+
+22-11-2021-https://www.onlinegdb.com/UYoXCg2OH
+
+23-11-2021-https://www.onlinegdb.com/GcTjO7Fx8
+	   https://tomcat.apache.org/download-80.cgi#8.5.73
+
+24-11-2021-https://www.onlinegdb.com/jaPnsrLLZ
+25-11-2021-
+
+26/11/21 -->https://onlinegdb.com/UPPb4QH6M
+
+27/11/21 -->https://www.onlinegdb.com/1irknzhAx
+
+29/11/21 -->https://onlinegdb.com/WVyeM_1Ur
+Hibernate
+
+30/11/21 -->https://onlinegdb.com/kOODpmca1
+-----------https://onlinegdb.com/_UdmQgPbK
+
+2/12/21 --->https://onlinegdb.com/B2FvXXz-h
+https://www.onlinegdb.com/vSG_CWHM6
+
