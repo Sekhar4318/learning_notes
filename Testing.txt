@@ -1,0 +1,132 @@
+Testing :-
+----------
+
+
+1)Functional Testing 
+2)Non Functional Testing or Performance testing 
+3)Maintainance testing (Integration )
+
+
+
+Functional Testing:-
+-------------------
+1)Unit Testing
+2)Integration Testing
+3)Smoke
+4)UAT(User Acceptance Testing)
+5)Localization
+6)Globalization
+
+
+   Unit Testing:-
+   ------------
+   ->Manual
+   ->Automated
+   
+   The workflow of Unit Testing is 1) Create Test Cases 2) Review/Rework 3) Baseline 4) Execute Test Cases.
+   
+  Unit Testing Techniques:-
+  ========================  
+The Unit Testing Techniques are mainly categorized into three parts which are Black box testing that involves testing of user interface along with input and output, 
+White box testing that involves testing the functional behaviour of the software application and 
+Gray box testing that is used to execute test suites, test methods, test cases and performing risk analysis.
+
+
+Code coverage techniques used in Unit Testing are listed below:
+
+Statement Coverage
+Decision Coverage
+Branch Coverage
+Condition Coverage
+Finite State Machine Coverage
+
+
+
+System Testing:-
+---------------
+Purpose of this testing is to evaluate system complaints with specified requirements
+
+
+Localization testing verifies an application's functionality and usability in a specific region. It checks native UI, language, currency, date & time formatting to meet the standards of that country. It must use language correctly and align with cultural norms.
+
+
+Globalization Testing is a process of validating whether a website delivers a customized user experience to users across the globe.
+
+
+
+
+
+
+
+
+
+Expressions & Variables:-
+=========================
+
+->Functionize Expression builder makes adding variables to the test quickly and easily
+->Variables open up the ability to test your site more thoroughly by allowing dynamic data for each execution.
+
+
+Expression:-
+============
+=>Functionize defines expression as executable piece of Java script code which is enclosed in two curly brackets.{{console.log("Hello World")}}
+=>Expression can be used wherever custom input is allowed within the test.
+
+
+Variables:-
+============
+->Variables are something that represents others data and you can change that data for various testing  purposes. Variables can be used in site credentials, order number and cookies. 
+
+
+
+Scope of a variable:-
+--------------------
+ Local Variables:- 
+ ------------------
+ ->Variable with local scope are declared with in a test and they are accessble to that test only and these are used for temperory.
+ ->These are the most common type of variables for dynamic data when running the test
+ 
+ ->A local variable is one that is defined and used within a single block of code, such as a function or method, and whose scope is restricted to that block.
+ ->Local variables are frequently used within functions and methods to hold temporary data or interim outcomes. They are essential for encapsulating and isolating data within a certain area of code
+ 
+  How to create Local Variable:
+  ----------------------------
+  ->Two ways to create a local variable for functionize automated Test case
+  1)Architect: While recording new test case
+  2)QuickAdd: From Front end UI, Test details page and Slider view
+  
+  
+  Architect:- Steps 
+  -----------------  
+  -> Click on variable icon to open variable panel
+  ->click on add variable to open expression builder, project variables
+  ->Enter scope of var, default will be local
+  ->Enter Name of variables
+  ->Select type of function that you are going to use like previous action, page variable and resource variable. Let's take example previouse action 
+  ->Select the step from where you need to retrive the data 
+  ->Then select attribute from dropdown for the data to store in the variable
+  ->Operator 
+  ->Expression
+  
+  Quick Add:-
+  ----------
+  Test details page and Slider view find the + symbol 
+  
+  
+  
+  
+ 
+ 
+ 
+ Project Variables:-
+ -------------------
+ -> variables with project scope declared at project, global level and they are accessible from any where in the project 
+ 
+ 
+ -> 
+
+
+
+
+
+

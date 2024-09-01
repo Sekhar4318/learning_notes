@@ -1,0 +1,710 @@
+package com.app.poc;
+
+import com.app.poc.designPatterns.factotyMethodPattern.GetPlanFactory;
+import com.app.poc.designPatterns.singletonePattern.Employee;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+import java.io.IOException;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+@SpringBootApplication
+@EnableAutoConfiguration(exclude = {ComponentScan.class})
+public class PocApplication {
+
+	public static void main(String[] args) throws IOException {
+//		A a1 = new B();
+////		a.child();
+//		a1.m1();
+
+
+
+
+
+
+
+		GetPlanFactory planFactory = new GetPlanFactory();
+		System.out.println("Enter Plan Name");
+		Scanner scanner = new Scanner(System.in);
+		Plan plan =  planFactory.getPlan(scanner.next());
+		plan.getRate();
+		System.out.println("Enter Units to calculate the bill");
+		plan.calculateBill(scanner.nextInt());
+
+
+
+
+		//-------------------------------------------------------
+
+
+
+//		SpringApplication.run(PocApplication.class, args);
+
+		//Merge two Employee ArrayList and sort by age in using java8 stream API
+		System.out.println("Merge two Employee ArrayList and sort by age in using java8 stream API");
+
+		List<Employee> empList1 = new ArrayList<>();
+		List<Employee> empList2 = new ArrayList<>();
+		empList1.add(new Employee(1, "Ram", 25));
+		empList1.add(new Employee(2, "Sekhar", 23));
+		empList2.add(new Employee(3, "John", 29));
+		empList2.add(new Employee(4, "Vamsi", 21));
+
+
+
+
+		List<Employee>  mergedAndSortedEmp = Stream.concat(empList1.stream(), empList2.stream()).sorted(Comparator.comparingInt(Employee::getEmpAge)).collect(Collectors.toList());
+
+		mergedAndSortedEmp.forEach(employee -> {
+			System.out.println("Id:"+employee.getEmpId() + "  empName:"+ employee.getEmpName() + "  empAge" + employee.getEmpAge() );
+		});
+
+
+		//-------------------------------------
+		List<Employee> employeeList = new ArrayList<>();
+		employeeList.add(new Employee(1, "Ram", 22));
+		employeeList.add(new Employee(2, "Sekhar", 24));
+		employeeList.add(new Employee(3, "John", 28));
+		employeeList.add(new Employee(4, "Vamsi", 33));
+
+		List<Employee> employeeList1 = new ArrayList<>();
+
+
+		LinkedHashMap<Integer, String> empMap = employeeList.stream().sorted(Comparator.comparingInt(Employee::getEmpId).reversed()).collect(Collectors.toMap(Employee::getEmpId, Employee::getEmpName, (oldValue,newVsalue) -> oldValue, LinkedHashMap::new));
+
+		System.out.println(empMap.entrySet());
+		//Find the missing number in an array of integers.
+		List<Integer> intList=  Arrays.asList(1,2,3,5,6,7,8);
+
+//		intList.stream().forEach((a,b)->  b-a );
+
+		System.out.println("Find the missing number in an array of integers");
+		for(int i=0; i<intList.size() ; i++){
+
+			if(i<intList.size()-1 && intList.get(i+1)-intList.get(i) != 1){
+				System.out.println(intList.get(i)+1);
+			}
+		}
+
+		//Find the first non-repeating character in a string
+		System.out.println("--------------------Find the first non-repeating character in a string------------");
+		String exStr = "ABCDABC";
+
+		for(int i=0; i<exStr.length() ; i++){
+			boolean isRepeated = false;
+			for(int j=i+1; j<exStr.length(); j++){
+				if(exStr.charAt(i) == exStr.charAt(j)){
+					isRepeated = true;
+				}
+			}
+			if(!isRepeated){
+				System.out.println(exStr.charAt(i));
+				break;
+			}
+		}
+
+		//reverse a linked list
+		System.out.println("-------------------reverse a linked list----------------------");
+		List<String> stList = new LinkedList();
+		stList.add("Sekhar");
+		stList.add("Shasha");
+		stList.add("Ramesh");
+		     //normal order
+		Iterator<String> stringIterator = stList.iterator();
+		while(stringIterator.hasNext()){
+			System.out.println(stringIterator.next());
+		}
+		    //Reverse order
+		Iterator<String> strIterator = stList.iterator();
+		for(int i=stList.size()-1; i>=0 ; i--){
+			System.out.println(stList.get(i));
+		}
+
+
+		//Merge two sorted arrays
+		System.out.println("-----------------Merge two sorted arrays------------------");
+		int [] oddNumArr = {1,3,5,7};
+		int [] evenNumArr = {2,4,6,8};
+
+
+		ArrayList<Integer> numList = new ArrayList<>();
+		for(int i= 0; i<oddNumArr.length; i++){
+			for(int j=i; j< evenNumArr.length ; j++){
+				numList.add(oddNumArr[i]);
+				numList.add(evenNumArr[j]);
+				break;
+			}
+		}
+		for(Integer num : numList){
+			System.out.print(num);
+		}
+
+
+
+
+
+		String input = "OPENTEXT";
+		char[] chArray = input.toCharArray();
+		int count = 1;
+		for (int i=0; i< chArray.length ; i++){
+			if(chArray[i] =='T') {
+				chArray[i] = String.valueOf(count).charAt(0);
+				count ++;
+			}
+		}
+		System.out.println(Arrays.toString(chArray));
+
+		//Occurance
+		//abcdabc  output: a2 b2 c2 d
+		System.out.println("Occurance");
+		HashMap<Character, Integer> hashMap = new HashMap<>();
+		String str10 = "abcdabc";
+		char[] c =  str10.toCharArray();
+
+//		Map<char[], Long> map =  Arrays.asList(c).stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+//		System.out.println(map);
+		for(int i=0; i<c.length ; i++){
+			int cnt=1;
+			for(int j=i+1; j<c.length; j++){
+				if(c[i] == c[j]){
+					cnt++;
+				}
+				if(j == c.length-1 && cnt>1){
+					hashMap.put(c[i],cnt);
+				}
+			}
+
+		}
+		hashMap.entrySet().stream().forEach(System.out::println);
+
+
+		//sorting without sort
+		String str = "sekhar";
+		char[] charArray = str.toCharArray();
+		char temp;
+		for(int i=0; i< charArray.length; i++){
+			for(int j=i+1; j < charArray.length; j++){
+				if(charArray[i] > charArray[j]){
+					temp = charArray[i];
+					charArray[i] = charArray[j];
+					charArray[j] = temp;
+				}
+			}
+		}
+		System.out.println(new String(charArray));
+
+		//using sort
+		Arrays.sort(chArray);
+		System.out.println(new String(chArray));
+
+
+		//removing white spaces from string
+
+		String str1 = "  j  a  v      a  ";
+		System.out.println(str1.replaceAll("\\s", ""));
+
+		// removing special chars
+
+		String str2 = "#J*$@a*!v&#a";
+		System.out.println(str2.replaceAll("[^a-zA-Z0-9]", ""));
+
+		//Num of vowels in given string
+        int cnt=0;
+		for(int i=0; i< charArray.length; i++){
+			if(charArray[i] == 'a' || charArray[i] == 'e' || charArray[i] == 'i' || charArray[i] == 'o' || charArray[i] == 'u'){
+				cnt ++;
+			}
+		}
+		System.out.println(cnt);
+
+
+
+		//word length
+		String word="Hello World I'm here world";
+
+		String[] str3=word.split(" ");
+		for(String st: str3)
+		{
+			int len= st.length();
+			System.out.println(st + "->"+ len);
+		}
+
+		//------------------------------------------
+
+		Employee  emp1 = new Employee(1, "Ram", 29);
+		Employee  emp2 = new Employee(2, "Sekhar", 25);
+		Employee  emp3 = new Employee(3, "Vamsi", 23);
+		Employee  emp4 = new Employee(4, "Vamsi", 2);
+		Employee  emp5 = new Employee(5, "Ram", 2);
+		List<Employee> empList = new ArrayList<>();
+		empList.add(emp1);
+		empList.add(emp2);
+		empList.add(emp3);
+		empList.add(emp4);
+		empList.add(emp5);
+		//filter
+		List<Employee> filteredEmp = empList.stream().filter(emp -> emp.getEmpAge() > 28).toList();
+		for(Employee emp : filteredEmp){
+			System.out.println(emp.getEmpId()+ " " + emp.getEmpName() + " " + emp.getEmpAge());
+		}
+		//map
+		List<String> empNames = empList.stream().map(Employee::getEmpName).toList();
+		empNames.forEach(System.out::println);
+		System.out.println("--------------------------------------");
+
+
+		//Find duplicates -> Approach-1 using set.add
+		Set<String> set = new HashSet<>();
+		List<String> duplicateNames = empNames.stream().filter(name -> !set.add(name)).collect(Collectors.toList());
+		duplicateNames.forEach(System.out::println);
+		System.out.println("@@@@@@@@@");
+
+
+		//Find countduplicates -> Approach-2
+		//using grouping by
+		Map<String, Long> mapNames = empNames.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+		mapNames.entrySet().stream().forEach(name -> System.out.println("Name:" +name.getKey()+ "  value:"+ name.getValue()));
+		System.out.println("------------------------------");
+		empNames.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+		//toFnd duplicates
+		mapNames.entrySet().stream().filter(name -> name.getValue() > 1).toList().forEach(System.out::println);
+		System.out.println("#################################################");
+
+		//using frequency
+
+		empNames.stream().filter(name -> Collections.frequency(empNames, name) > 1).collect(Collectors.toSet()).forEach(name -> System.out.println(name));
+
+
+
+		try{
+			int a = 100/0;
+		}catch (ArithmeticException e){
+			System.out.println(e);
+		}
+
+
+		Multi  t = new Multi();
+		Thread t1 = new Thread(t);
+		t1.start();
+
+
+		//Thread
+		ThreadClass t2 = new ThreadClass();
+		t2.run();
+		//Runnable
+		RunnableExample runnableExample = new RunnableExample();
+		runnableExample.run();
+//		Thread t3 = new Thread(runnableExample);
+//		t3.start();
+
+
+		String s1 ="GoodMorning World";
+		String s2 = "Hi Hello";
+
+		//outPut = "Hello World Hi GoodMorning"
+		String[] wordsArray1 =  reverseWords(s1);// World GoodMorning
+		String[] wordsArray2 =  reverseWords(s2);// Hello Hi
+
+		StringBuffer sb = new StringBuffer();
+
+		for(int i=0; i<wordsArray2.length ; i++){
+			sb.append(wordsArray2[i] +" "+ wordsArray1[i] +" ");
+		}
+		System.out.println("_____________________________________________________________");
+		System.out.println(sb);
+
+
+
+		// splitting string with index
+		String st = "JavaDeveloper";
+		StringBuffer sbf = new StringBuffer();
+		System.out.println("_____________________________________________________________JavaDeveloper");
+		Object[] strList =  splitStringBasedOnNum(3, st).toArray();
+		System.out.println(Arrays.toString(strList));
+
+		// print words with even length
+		System.out.println("____________________________print words with even length_________________________________");
+
+		String s = "This is a java language";
+
+		String[] splitStr =  s.split(" ");
+		for(int i=0 ; i<splitStr.length; i++){
+			if(splitStr[i].length() % 2 == 0){
+				System.out.println(splitStr[i]);
+			}
+		}
+
+		//Insert a String into another String in Java   output="HealthisWealth"
+		System.out.println("____________________________Insert a String into another String in Java_________________________________");
+		String string = "HealthWealth";
+		StringBuffer sbf1 = new StringBuffer();
+		String[] ar = string.split("",7);
+		for(int i = 0; i<ar.length ; i++){
+			if(i != 6) {
+				sbf1.append(ar[i]);
+			}else sbf1.append("is").append(ar[i]);
+		}
+		System.out.println(sbf1);
+
+
+		//check whether string is palindrome or not
+		System.out.println("____________________________Palindrome________________________");
+		String ps = "EYE";
+		StringBuffer spb = new StringBuffer();
+
+		for(int i=ps.length()-1; i>=0 ; i--){
+			spb.append(ps.charAt(i));
+		}
+		if(ps.equals(spb.toString())){
+			System.out.println("Given String "+ spb +"is a palindrome");
+		}else{
+			System.out.println("Given String "+ ps +"is not a palindrome");
+		}
+
+		// check whether given two string anagram or not
+		System.out.println("____________________________Anagram________________________");
+		String st1 = "LISTENH";
+		String st2 = "SILENTM";
+		IntStream jak = st2.chars();
+		st1.chars().forEach(l -> st2.contains(st1));
+		int n=0;
+
+		if(st1.length() == st2.length()) {
+			for (int i = 0; i < st1.length(); i++) {
+				for (int j = 0; j < st2.length(); j++) {
+					if (st1.charAt(i) == st2.charAt(j)) {
+						n++;
+					}
+				}
+			}
+			if(st1.length() == n){
+				System.out.println("Given two string are anagram");
+			}else{
+				System.out.println("Given two strings are not anagram");
+			}
+		}else System.out.println("->Given two strings are not anagram");
+
+
+		//Replace a character at a specific index in a String in Java
+		String sts = "Sekhar Kummari";
+		System.out.println(sts.replace("K", "k"));
+
+		String strt = "Geeks Gor Geeks";
+
+		// Get the index
+		int index = 6;
+
+		// Get the character
+		char ch = 'F';
+
+		// Print the original string
+		System.out.println("Original String = " + strt);
+
+		strt = strt.substring(0, index) + ch
+				+ strt.substring(index + 1);
+
+		// Print the modified string
+		System.out.println("Modified String = " + strt);
+
+
+		//Sorting Num Array
+		System.out.println("-----------------Sorting----------Num-------Array-------------");
+
+		int [] numArray = {1,2,3,4,5,10,9,8,7,6};
+		List<Integer> numList1 = new ArrayList<>();
+
+		for(int i=0; i<=numArray.length/2-1 ; i++){
+			numList1.add(numArray[i]);
+			if(i==numArray.length/2-1){
+				for(int j=numArray.length-1 ; j>=5 ; j--){
+					numList1.add(numArray[j]);
+				}
+			}
+		}
+		System.out.println(numList1);
+
+        //FindDuplicateWord
+		System.out.println("--------------FindDuplicateWord-----------------");
+		String wordString = "Hyderabad is Good city and Hyderabad is nice city";
+		List<String> stringList = findDuplicateWord(wordString);
+		for (String w : stringList) {
+			System.out.println(w);
+		}
+
+
+		//Find First non repeating character
+		System.out.println("----------------Find First non repeating character-----------------");
+		String s4 = "abcdabc";
+		char[] charAr = s4.toCharArray();
+
+		for(char ch1 : charAr){
+			boolean isCharRepeated = false;
+			for(int i = 0; i<s4.length() ; i++){
+				if(ch1 == s4.charAt(i)){
+					isCharRepeated = true;
+				}
+			}
+			if(!isCharRepeated){
+				System.out.println(ch1);
+			}
+		}
+//		for(int i = 0; i<s4.length() ; i++){
+//			boolean isRepeated = false;
+//			for(int j=i+1; j<s4.length(); j++){
+//				if(s4.charAt(i) == s4.charAt(j)){
+//					isRepeated = true;
+//					break;
+//				}
+//
+//			}
+//			if(!isRepeated){
+//				System.out.println(ch1);
+//			}
+//		}
+
+
+		// Find missing number in an array
+		System.out.println("----------------Find missing number in an array----------------------");
+		int [] numberArray = {1,2,3,4,6,7,8};
+
+//		Arrays.stream(numberArray).
+		for (int i = 0; i < numberArray.length; i++) {
+			if (i < numberArray.length-1 && numberArray[i+1] - numberArray[i] != 1) {
+				System.out.println(numberArray[i] + 1);
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+	}
+
+	public static List<String> findDuplicateWord(String s) {
+
+		String[] words = s.split(" ");
+		List<String> stringList = new ArrayList<>();
+		boolean isDuplicateWord = false;
+		for (int i = 0; i < words.length; i++) {
+
+			for (int j = i + 1; j < words.length; j++) {
+				if (words[i].equalsIgnoreCase(words[j])) {
+					isDuplicateWord = true;
+				}
+				if (!isDuplicateWord) {
+					stringList.add(words[j]);
+				}
+			}
+
+
+		}
+		return stringList;
+
+	}
+	static List<String> list = new ArrayList<>();
+
+
+	private static List<String> splitStringBasedOnNum(int n, String st){
+		String str = "";
+		String[] stArr = st.split("", n+1);
+		for(int i=0 ; i< stArr.length ; i++){
+			if(i != n) {
+				str = str + stArr[i];
+			}else{
+				list.add(str);
+				Object obj = stArr[i].length() < 2 ? list.add(stArr[i]) : splitStringBasedOnNum(n, stArr[i]);
+			}
+		}
+		return list;
+	}
+
+	private static String[] reverseWords(String s) {
+		StringBuffer sbr = new StringBuffer();
+		String[] str1 =  s.split(" ");
+		for(int j=str1.length - 1; j>=0 ; j--){
+			sbr.append(str1[j]+ " ");
+		}
+		return new String(sbr).trim().split(" ");
+	}
+
+
+
+
+
+}
+===========================================================================================
+package com.app.poc;
+
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class Problems {
+
+
+    public static void main(String[] args){
+
+//        listOfIntegers.stream().filter( num -> num% 5 == 0).forEach(System.out::println);
+
+
+
+
+
+        //Prefix as [ and suffix as ] separated with delimiter ,
+        List<String> listOfStrings = Arrays.asList("Facebook", "Twitter", "YouTube", "WhatsApp", "LinkedIn");
+        String joinedString = listOfStrings.stream().collect(Collectors.joining(", ", "[", "]"));
+        System.out.println(joinedString);
+//        listOfStrings.stream().map( str -> "["+str+"]" + ",").forEach(System.out::println);
+
+
+        //Frequency of each character
+        System.out.println("Frequency of each character");
+        String inputString = "Java Concept Of The Day";
+        Map<Character, Long> charMap = inputString.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+
+        inputString.chars().mapToObj(c -> (char) c).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+
+        charMap.entrySet().stream().forEach(entrySet -> System.out.println(entrySet.getKey() + ":"+ entrySet.getValue()));
+
+
+        List<Integer> numList = Arrays.asList(1,3,2,7,6,9,5,8,3,1);
+
+//        int a = 10;
+//        int b = 0;
+//        int i = a / b;
+//        HashSet<Integer> duplicateNum
+
+
+//        numList.stream().filter(num -> num % 2 == 0 );
+
+        HashMap<String, List<Integer>> hashMap = new HashMap<>();
+
+        hashMap.put("list", numList);
+        List<Integer> evenNum = new ArrayList<>();
+        List<Integer> oddNum = new ArrayList<>();
+        hashMap.entrySet().stream().map(entry -> entry.getValue().stream().filter(num -> num%2 == 0)).collect(Collectors.toList());
+
+        hashMap.entrySet().stream().map(entry -> entry.getValue().stream().map(value -> value % 2 == 0 ? evenNum.add(value) : oddNum.add(value)).collect(Collectors.toList())).collect(Collectors.toList());
+
+        System.out.println("Even Numbers");
+        evenNum.stream().forEach(System.out::println);
+        System.out.println("Odd Numbers");
+        oddNum.stream().forEach(System.out::println);
+
+
+
+
+
+
+
+        //Find all integers starting with 1
+        System.out.println("Find all integers starting with 1");
+        List<Integer> myList = Arrays.asList(10,15,8,49,25,98,32);
+        myList.stream().filter( num -> num.toString().startsWith("1")).forEach(System.out::println);
+
+
+        //Find duplicates in list of integer
+        System.out.println("Find duplicates in list of integer");
+        List<Integer> intList = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        Set<Integer> set = new HashSet<>();
+        intList.stream().filter(num -> !set.add(num)).forEach(System.out::println);
+
+
+        //Max
+        System.out.println("-----------Max-------------");
+        List<Integer> myList1 = Arrays.asList(10,15,8,49,25,98,98,32,15);
+        int max =  myList1.stream()
+                .max(Integer::compareTo)
+                .get();
+        System.out.println(max);
+
+
+        //find the first non-repeated character
+        System.out.println("-----------find the first non-repeated character-------------");
+        String input = "Java articles are Awesome";
+        HashMap<String,String> stringHashMap = new HashMap<>();
+
+//        Map<Character, Long> map =  input.chars().mapToObj(s-> Character.toLowerCase ((char) s)).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting()));
+//
+//        System.out.println(map.entrySet().stream().filter(key -> key.getValue() == 1).map(Map.Entry::getKey).findFirst().get());
+
+        System.out.println(input.chars().mapToObj(s -> Character.toUpperCase((char) s)).collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new, Collectors.counting())).entrySet().stream().filter(entry -> entry.getValue() == 1).map(s -> s.getKey()).findFirst().get());
+
+
+        //Concatnate two streams
+        System.out.println("Concatnate two streams");
+        List<String> list1 = Arrays.asList("Java", "8");
+        List<String> list2 = Arrays.asList("explained", "through", "programs");
+
+        Stream<String> concatStream = Stream.concat(list1.stream(), list2.stream());
+
+        // Concatenated the list1 and list2 by converting them into Stream
+
+        concatStream.forEach(System.out::print);
+
+
+
+        // Map & flat Map
+
+        System.out.println("Map & flat Map");
+        // List of names
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie Brown");
+
+        // map: Create a list of usernames with "user_" prefix
+        List<String> usernames = names.stream()
+                .map(name -> "user_" + name)
+                .collect(Collectors.toList());
+
+        List<List<String>> families = Arrays.asList(
+                Arrays.asList("Alice", "Bob"),
+                Arrays.asList("Charlie", "Snoopy")
+        );
+
+        List<String> allMembers = families.stream()
+                .flatMap(Collection::stream)// Flatten each family list
+                .collect(Collectors.toList());
+
+        System.out.println(allMembers);
+
+
+
+        //Each word length
+        System.out.println("Word Length");
+
+        List<String> namesList = Arrays.asList("AA", "BB", "AA", "CC");
+        namesList.stream().map(word -> word.length()).forEach(System.out::print);
+
+
+        //count of each character in a String?
+        System.out.println("Word Length");
+        String s = "string data to count each character";
+
+        Arrays.stream(s.split("")).collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting())).entrySet().stream().forEach(System.out::println);
+
+
+//        CartService cartService = new CartService();
+//        cartService.jsonParser();
+
+
+
+        //Find even numbers from ArrayList and find the sum of all numbers
+        System.out.println("Find even numbers from ArrayList and find the sum of all numbers");
+        List<Integer> numberList = Arrays.asList(1,4,3,5,6,8,9,7);
+        System.out.println(numberList.stream().filter(num -> num % 2 == 0).mapToInt(Integer::intValue).sum());
+
+
+    }
+}

@@ -1,0 +1,237 @@
+                        Iterable 
+                           | 
+                       Collection                                 -> Map
+			|              |          |                                |
+			List         Queue        Set                              |
+				
+		1.ArrayList      1.Deque 		1.HashSet                     1.HashMap
+		2.LinkedList   2.PriorityQueue  2.LinkedHashSet               2.LinkedHashMap
+		3.Vector                        3.TreeSet                     3.TreeMap
+		4.Stack
+		
+		
+		
+->Iterable is a root class from which all collection classes will be inherited
+->Collection-> which implements Iterable interface
+Collection: Group of individual elements is called collection and it can be inherited by three classes
+
+=>List: Stores Group of individual elements 
+      -> allows duplicates,Non Synchronized and it supports index based search
+	  
+1)ArrayList:
+    ->It implements List Interface
+    ->follows Dynamic array (resizable data structure) i.e when the list is full it increases it's size by 50% of it's original size
+	->Non Synchronized
+	->allows null values
+	->allows duplicates
+	->maintains insertions order
+	->easy for search operations
+	
+2)LinkedList:
+    ->It implements both List and Queue interface
+	->it follows doubly linked list structure
+	->it doesn't support index based search so accessing the element randomly is not posible
+	->Non Synchronized
+	->Maintains Insertion Order
+	
+3)Vector:
+    -> It's legacy class i.e introduced after jdk 1.2
+	-> It increases it's size by double of it's original size
+	-> Synchronized
+	
+4)Stack:
+    ->it follows LIFO structure -> elements which are added from rear end removed from frontend
+	->it's legacy class
+	
+	
+	
+   Queue:
+      -> Queue follow Last in First Out(LIFO) -> elements added and removed from rear end only
+1)Deque(Doubly ended queue)
+2)PriorityQue -> elements will be added and removed based on priority
+
+
+
+   Set: ->implements collection interface
+        -> store unique elements
+		
+1) HashSet:
+      ->it follows hashtable for storing elements
+      -> implements Set interface
+	  -> Doesn't allow duplicates
+	  -> Doesn't maintains any order
+	  ->
+	  
+	
+	  
+	  
+2)LinkedHashSet:
+      ->It extends HashSet and Abstract HashSet
+	  ->It follows doubly linked list for storing elements
+	  
+	  
+3)TreeSet:
+       ->uses redblack tree for storing elements
+	   
+	   
+  Map:
+  ->Used to store the objects in the form of Key value pair
+  
+1)HashMap:
+    -> Implements Map interface
+    -> follows hashing technique for storing objects
+	-> allows null values and one null key
+	-> non synchronized
+	-> Not thread safe
+	
+	How hashMap stores the objects:
+	
+	When we add key value pair to hashmap then first key goes through a hash function and this function converts key into unique interger called hashcode
+	And the hashcode is used to determine the bucket where key value pair will be stored
+	 
+	Collision resolution:
+	   -> It's possible that different keys might have the same hashcode (collisions). To handle this, hashmaps use various collision resolution techniques.
+    Common strategies include:
+      -> Chaining: Each bucket becomes a linked list, where entries with the same hashcode are stored sequentially.
+	
+	Retrieving data:
+
+      -> To retrieve a value, the key's hashcode is calculated again, and the corresponding bucket is accessed.
+      ->If there are multiple entries with the same hashcode, the key is compared with each entry's key using the equals() method to find the exact match.
+	  
+	  
+Difference between HashMap and ConcurrentHashMap:
+
+1.Hashmap is not synchronized so it' not a thread safe and connot used in multi threaded environment 
+      1.Concurrent hash map is synchronized and it's thread safe so it can be used in multithreaded environment
+	  
+2. HashMap allows null values in both key and value 
+      2. It throws null pointer exception when we add null values eaither in key or value
+3.it has fail fast iterator and it throws Concurrent modificationException when one thread trying modify object while another object iterating the hashmap
+      3. It has fail safe iterator and It doesb't throw ConcurrentModification Exception when a thread is trying to modify the object while other thread is iterating the hashMap.
+	  
+4.Hash map is faster compare to ConcurrentHashMap
+      4. It is slower but negotiable
+5.It doesnt have any synchronization mechanism
+      5. It has segment locking and lock stripping	  
+	  
+	  
+	  
+	  
+	  
+	  
+2)LinkedHashMap:
+
+   it extends HashMap and implements abstract hashMap
+   
+3)Tree Map
+
+
+    
+
+
+	
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
+		            
+					
+					                 Throwable
+					                     |
+					
+					
+					
+					   
+					    |                                         |
+					Exception                                   Error
+            |                          |
+	Runtime Exception         Compile Time Exception             1.StackOverFlowError
+1.Null pointer Exception      1.IO Exception                     2.Virtual Machine error
+2.NumberFormatExc             2.SQL Exception
+3.ArithmeticException         3.ClassNotFoundException
+3.IndexOutOfBoundsEx     
+  i.ArrayIndexOutOfBounds
+  ii.String
+  
+  
+  
+  
+  Exeption: an event that disrupts the normal flow of the program is called exception.
+  ExceptionHandling: it is mechanism and which is used to handle the exception using try catch block
+  
+  Compiletime:
+     ->Exceptions that implements Throwable and Exception except RuntimeException is called Compiletime Exception
+  Runtime:
+     ->Exceptions that being inherited by RuntimeException.
+	 
+	 
+	Error: it is related to environment and if goes wrong then error will be displayed and it's not related code 
+	
+	
+	
+	
+	
+	
+	
+Thread:
+Thread is a lightweight sub process, smallest unit of processing.
+
+
+MultiThreading:
+The process of excuting multiple threads simultaniously.
+
+->we use multithreading than multiprocessing because threads use a shared memory area.
+ They don't allocate separate memory area so saves memory, and context-switching between the threads takes less time than process.
+ 
+ Advantages of Java Multithreading
+1) It doesn't block the user because threads are independent and you can perform multiple operations at the same time.
+
+2) You can perform many operations together, so it saves time.
+
+3) Threads are independent, so it doesn't affect other threads if an exception occurs in a single thread.
+
+
+MultiTasking:
+Performing multiple tasks at one time is called multi Tasking
+
+1.Process based multi tasking:
+------------------------------
+Process based multitasking is exucuting the several tasks simultaniously where each task is a seperate independent process is  Process Based MultiTasking
+
+Ex: It enables you to run IntelliJ at the same time you are visiting NotePad or CHrome 
+
+
+
+2. Thread based multi tasking is excuting several tasks simultaniously where each task is a seperate independent part of the same program.
+
+Ex: As an application we can have computer games where we can see objects like car, bike etc. They are just threads that run in the game application.
+
+
+Join:
+ permits one thread to wait until the other thread to finish its execution
+
+	
+
+  
+  
+ 
+  
+  
+
+
+

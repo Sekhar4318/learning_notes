@@ -1,0 +1,342 @@
+
+
+public class ParentClass extends Exception{
+
+  public void calc(){
+     System.Println("Parent class")
+  }
+  
+  
+
+}
+
+
+
+
+public class ChildClass extends ParentClass {
+
+  
+
+   public void multiplication(){
+   
+   }
+   
+   try{
+   
+   ChildClass ch = new ChildClass();
+   ch.multiplication();
+   
+   ]catch(exp){
+   
+   }
+   
+   
+  
+   empList.stream().map(emp -> emp.getAge).collect(collectors.toList())
+   numbes.stream().filter( num -> num%2 == 0)
+   
+   String str = "Hyd";
+   String str1 = "";
+   
+   
+   Char[] ch = str.charAt(); {"H","y","d"}
+   
+   
+   for(i=2: i>0 ; i--){
+   
+	 str1 = ch[i];
+    
+   }
+   
+   
+   
+   
+   
+   
+
+  
+  
+  ch.();
+
+
+
+}
+
+
+
+
+calss A {
+	 public int child() throws ArithmeticException{
+			System.out.println("parent");
+			return 0;
+	 }
+}
+ 
+class B extends A {
+ 
+	public int child() throws Exception{
+		System.out.println("child");
+		return 0;
+	 }
+ 
+}
+A a =new B();
+a.child();
+
+
+
+
+
+
+
+
+
+
+
+-----------------------------
+class Employee{
+
+int id, name , sal, dep;
+
+}
+
+empList.stream().collect(Colectors.groupingBy(Employee::getDep), Collectors.Counting())
+
+Map<Employee, Double> empMap = new HashMap<>();
+
+ empMap.put(new Employee(1,"A",111), 111);
+empMap.put(new Employee(1,"B",111) , 111);
+empMap.put(new Employee(2,"C",111) , 111);
+
+empMap.size()
+
+empMap.get(new Employee(1,"A",111));
+
+
+
+
+String str = new String("user");
+  map.put(str ,1);
+map.put(new String("user") ,2);
+map.put("user" ,3);
+
+map.size()
+map.get(new String("user"));
+map.get("user");
+
+
+
+String str = new String("user");
+String s = "user";
+
+str.equals(s);
+
+
+
+----------------------------------------------
+
+   
+   
+   
+   sortedList =  listOfInteger.stream().sorted(comparator.reverseOrder).collect(Collector.asList);
+  
+  Sys/
+  
+  
+  listOfInteger = Arrays.asList(3,5,7,9,11);
+  
+  for(int i=0 ; i<listOfInteger.length ; i++){
+    for( int j = i+1 ; j<listOfInteger.length ; j++){
+	    if(listOfInteger[i] 
+	
+	}
+  
+  }
+  
+  
+  
+  
+  
+  @RestController
+  public class SekharController {
+  
+  
+  
+  @GetMapping("/{name}")
+  public String myName(@PathVariable("name") String name ){
+  
+  return name;
+  }
+  
+  
+  }
+  
+  Select max(salary),  from Employee order by salary desc
+  
+  
+  
+-----------------------------------------------
+
+
+
+Reverse String:
+
+Using toCharArray:
+
+String str = "Hyd";
+Char[] chArr = str.toCharArray();
+
+for (i=chArr.length -1 ; i>=0 ; i--){
+
+     System.out.print(chArr[i]);
+	 
+}
+
+Using charAt:
+
+for(i = str.length -1 ; i>= 0 ;i--){
+    System.out.print(str.charAt[i]);
+}
+
+Using StringBuffer:
+ 
+ 
+ StringBuffer sbr = new StringBuffer(str);
+ Sys.out.print(sbr.reverse());
+ 
+Using StringBuilder:
+ 
+ StringBuilder sbr = new StringBuilder(str);
+ Sys.out.print(sbr.reverse());
+ 
+  Removing duplicates from string:
+  --------------------------------
+
+using distinct:
+--------------
+String str = "Hello";
+
+StringBuilder sbr = new StringBuilder();
+
+str.chars().distinct.ForEach(ch -> sbr.append(ch));
+sys.out.println(sbr);
+
+using IndexOf:
+--------------
+StringBuilder sb1 = new StringBuilder();
+
+
+for (i= 0 ; i<string.length() ; i++){
+
+   Char ch = str.charAt[i];
+   int index = str.indexOf(ch, i+1);
+   if(index == -1){
+     sb1.append(ch)
+   }
+   sys.out.println(sb1);
+
+}
+
+using 
+
+StringBuffer sb2 = new StringBuffer();
+for (i = 0 ; i<str.length() ;i++){
+      for ( j=i+1; j<str.length ; j++){
+	     if(str.charAt[i]== str.charAt[j]){
+		   repeated = true;
+		   break;
+		 }
+		 
+		 if(!repeated){
+		 sb2.append(str.charAt[i];
+		 }
+	  
+	  }
+}
+
+
+Using Set Interface:
+
+StringBuffer sb3 = new StringBuffer();
+Set<Character> set = new LinkedHashSet();
+
+for(i= 0; i<str.length(); i++){
+    set.add(str.charAt[i]);
+}
+
+for(Character ch : set){
+   sb3.append(ch);
+
+}
+
+Finding first occurance of non repeated char
+
+Using collection:
+
+Input = "AABCDCE"
+
+Map<Character, Integer> map = new HashMap<>();
+
+for (int i=0; i<input.length(); i++){
+    Char ch = input.charAt(i
+	if(map.containsKey(ch)){
+	  map.put(ch, map.get(ch)+1)
+	}else{
+	  map.put(input.charAt(i), 1)
+	}
+}
+
+ for (Entry<Character, Integer entrySet : map.getEntrySet){
+   if(entrySet.getValue == 1){
+    System.out.println(entrySet.getKey())
+	break;
+   }
+ }
+ 
+without using collection:
+
+isUnique = false;
+
+for (int i=0; i<input.length() ; i++){
+
+   for ( j= i+1; j<input.length ; j--){
+        if(input.charAt(i) != input.charAt(j)){
+		 isUnique = true;
+		 break;
+		}
+		
+		if(isUnique){
+		  sys.out.println(input.charAt(i));
+		}
+		
+   
+   }
+
+}
+
+String str = "OPENTEXT"
+StringBuffer sb = new StringBuffer();
+
+for(int i=0 ; i<str.length(); i++){
+
+
+   if(str.charAt(i) == T){
+   
+   }
+
+
+}
+
+
+
+
+
+ 
+ 
+
+
+
+
+
+  
+  
